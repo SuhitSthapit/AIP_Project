@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block head_title %} About || {{block.super}} {% endblock head_title %}
+{% block content %}
+
+<h1>
+	{% if logic %}
+	ABOUT Roll no is {{htmlvar}}
+	{% endif %}
+</h1>
+
+<p>This is a paragraph.</p>
+{% endblock content %}

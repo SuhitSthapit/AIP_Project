@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from liquors.views import home, about
 
 urlpatterns = [
+	url(r'^$', home),
+	url(r'^about/$', about),
     url(r'^admin/', admin.site.urls),
 ]
