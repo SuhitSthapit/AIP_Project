@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block head_title %} Liqours || {{block.super}} {% endblock head_title %}
+{% block content %}
+<h1> Liquors List</h1>
+
+<div class="container">    
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Can or Bottle</th>
+        <th>Price (AUD$)</th>
+      </tr>
+    </thead>
+    <tbody>
+
+{% for obj in object_list %}
+  <tr>
+        <td><a href = '{{ obj.get_absolute_url }}'>{{obj.name}} </a></td>          
+        <td>{{obj.category}} </td>
+        <td>{{obj.can_or_bottle}} </td>
+        <td>{{obj.price}} </td>
+  </tr>
+
+{% endfor %}
+
+   </tbody>
+  </table>
+</div>
+
+{% endblock content %}

@@ -13,12 +13,28 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
-from liquors.views import home, about
+
+from django.contrib.auth.views import LoginView
+
+from liquors.views import (
+	HomeView, AboutView, 
+	LiquorListView,
+	LiquorDetailView,
+	LiquorCreateView, liquor_createview
+)
 
 urlpatterns = [
-	url(r'^$', home),
-	url(r'^about/$', about),
+	url(r'^$', HomeView.as_view(), name ='home'),
+	url(r'^about/$', AboutView.as_view(),name ='about'), #instance of a class
+	#url(r'^liquors/$', liquor_Listview), #function
+	 url(r'^liquors/', include('liquors.urls', namespace = 'liquors')),  ###include the urls.py file of app Liquors
+	#url(r'^liquors/$', LiquorListView.as_view(), name ='liquors'), 
+	url(r'^login/$', LoginView.as_view(), name = 'login'),  ## logging in
+	#url(r'^liquors/create/$', liquor_createview),
+	#url(r'^liquors/create/$', LiquorCreateView.as_view(), name ='liquours-create'),  ### add liquor by a form  
+	#url(r'^liquors/(?P<slug>\w+)/$', LiquorListView.as_view()), #listView  ##slug is used to search for types of alcohols as well
+    #url(r'^liquors/(?P<slug>[\w-]+)/$', LiquorDetailView.as_view(), name ='liquor-detail'),   ### pk = primary key
     url(r'^admin/', admin.site.urls),
 ]

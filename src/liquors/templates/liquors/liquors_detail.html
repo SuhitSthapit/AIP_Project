@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block head_title %} Liqours || {{block.super}} {% endblock head_title %}
+{% block content %}
+<br><hr size = "10"><br>
+<h1> {{object.name}}<small> {{object.category}}</small></h1>
+<p>Price: {{object.price}}$</p>
+<p>Availability: {{object.can_or_bottle}}</p>
+<p>{{object.timestamp}}, Updated {{object.updated|timesince}} ago!</p>
+<br><hr size = "10">
+{% endblock content %}
