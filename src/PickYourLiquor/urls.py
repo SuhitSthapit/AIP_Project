@@ -16,23 +16,29 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 
 from liquors.views import (
+	HomeViews, ##for wheen user is loggen in
 	HomeView, AboutView, 
 	LiquorListView,
 	LiquorDetailView,
 	LiquorCreateView, liquor_createview
 )
+from profiles.views import RegisterView
+from profiles.views import ProfileFollowToggle
 
 urlpatterns = [
-	url(r'^$', HomeView.as_view(), name ='home'),
+	url(r'^$', HomeViews.as_view(), name ='home'),
 	url(r'^about/$', AboutView.as_view(),name ='about'), #instance of a class
 	#url(r'^liquors/$', liquor_Listview), #function
 	url(r'^liquors/', include('liquors.urls', namespace = 'liquors')),  ###include the urls.py file of app Liquors
 	url(r'^u/', include('profiles.urls', namespace = 'profile')), ## u = users
 	#url(r'^liquors/$', LiquorListView.as_view(), name ='liquors'), 
 	url(r'^login/$', LoginView.as_view(), name = 'login'),  ## logging in
+	url(r'^logout/$', LogoutView.as_view(), name = 'logout'),  ## logout 
+	url(r'^register/$', RegisterView.as_view(), name = 'register'),  ## Register user
+	url(r'^profile-follow/$', ProfileFollowToggle.as_view(), name='follow'), ##follow
 	#url(r'^liquors/create/$', liquor_createview),
 	#url(r'^liquors/create/$', LiquorCreateView.as_view(), name ='liquours-create'),  ### add liquor by a form  
 	#url(r'^liquors/(?P<slug>\w+)/$', LiquorListView.as_view()), #listView  ##slug is used to search for types of alcohols as well

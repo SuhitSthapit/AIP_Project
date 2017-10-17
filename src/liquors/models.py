@@ -33,6 +33,7 @@ class LiquorList(models.Model):  ##to save data in database
 	timestamp = models.DateTimeField (auto_now_add = True)   ### timestamp cannot be changed
 	updated = models.DateTimeField (auto_now = True)    ##when the data is updated 
 	slug = models.SlugField(null = True, blank = True)
+	public = models.BooleanField(default=True)
 	
 	objects = LiquorListManager()  ###add Model.objects.all()
 
