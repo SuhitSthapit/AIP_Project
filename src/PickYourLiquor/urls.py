@@ -29,7 +29,8 @@ urlpatterns = [
 	url(r'^$', HomeView.as_view(), name ='home'),
 	url(r'^about/$', AboutView.as_view(),name ='about'), #instance of a class
 	#url(r'^liquors/$', liquor_Listview), #function
-	 url(r'^liquors/', include('liquors.urls', namespace = 'liquors')),  ###include the urls.py file of app Liquors
+	url(r'^liquors/', include('liquors.urls', namespace = 'liquors')),  ###include the urls.py file of app Liquors
+	url(r'^u/', include('profiles.urls', namespace = 'profile')), ## u = users
 	#url(r'^liquors/$', LiquorListView.as_view(), name ='liquors'), 
 	url(r'^login/$', LoginView.as_view(), name = 'login'),  ## logging in
 	#url(r'^liquors/create/$', liquor_createview),

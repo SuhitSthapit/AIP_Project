@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block head_title %} Liqours || {{block.super}} {% endblock head_title %}
+{% block content %}
+<br><hr size = "10"><br>
+<h1> {{form.instance.name}}<small> {{form.instance.category}}</small></h1>
+<p>Price: {{form.instance.price}}$</p>
+<p>Availability: {{form.instance.can_or_bottle}}</p>
+<p>{{form.instance.timestamp}}, Updated {{form.instance.updated|timesince}} ago!</p>
+<hr size = "10">
+
+<h3> Make Changes: </h3>
+{% include 'snippets/form-snippet.html' with form=form %}
+
+<hr/>
+{% endblock content %}

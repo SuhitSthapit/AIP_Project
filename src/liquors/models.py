@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.db.models import Q
 from django.db.models.signals import pre_save, post_save
 from django.core.urlresolvers import reverse
 
@@ -7,6 +8,22 @@ from .utils import unique_slug_generator
 
 User = settings.AUTH_USER_MODEL
 # Create your models here.
+
+class LiquorListQuerySet(models.query.QuerySet):
+	def search (self, query):
+		if query:	
+			return self.filter(Q(name__icontains=query)|
+			Q(category__icontains=query)|
+			Q(can_or_bottle__icontains=query)) ##search name of category
+		return self 
+		
+class LiquorListManager (models.Manager):   ##search option
+	def get_queryset(self):
+		return LiquorListQuerySet(self.model, using=self._db)
+
+	def search(self, query):  ##liquorlist.object.search
+		return self.get_queryset().filter(query)
+
 class LiquorList(models.Model):  ##to save data in database
 	owner = models.ForeignKey(User)  ##class_instance.model_set.all()
 	name = models.CharField(max_length = 150)
@@ -17,6 +34,8 @@ class LiquorList(models.Model):  ##to save data in database
 	updated = models.DateTimeField (auto_now = True)    ##when the data is updated 
 	slug = models.SlugField(null = True, blank = True)
 	
+	objects = LiquorListManager()  ###add Model.objects.all()
+
 	def __str__(self):
 		return self.name            ##Return's name field when the object is referenced
 

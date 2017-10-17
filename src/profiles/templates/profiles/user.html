@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block head_title %} {{user.username}} || {{block.super}} {% endblock head_title %}
+{% block content %}
+<h1> {{user.username}} </h1>
+
+<form class='form' method='GET' action='.'>
+<input type='text' placeholder="Search..." name = 'q' value='{{ request.GET.q }}'>
+<button class='btn btn-default' type='submit'>Search </button>
+<hr/>
+{% if liquor %}
+{% for liquor in liquor  %}
+<div class = 'row'>
+  <div class = 'col-sm-6' style= 'border: 1px solid #ccc; border-radius: :5px; margin-bottom: 15px;'> <h5>{{liquor.name}}</h5> 
+    <p>{{liquor.category}}  ||  ${{liquor.price}}  ||  {{liquor.can_or_bottle}} </p>
+
+</div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock content %}

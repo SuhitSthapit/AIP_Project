@@ -26,7 +26,8 @@ class LiquorListCreateForm (forms.ModelForm):
 			'name',
 			'category',
 			'price',
-			'can_or_bottle'	
+			'can_or_bottle',
+			'slug'
 		]
 
 	def clean_name (self):               #####validate error

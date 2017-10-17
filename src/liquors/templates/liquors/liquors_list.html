@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block head_title %} Liqours || {{block.super}} {% endblock head_title %}
 {% block content %}
-<h1> Liquors List</h1>
+<h1> My Liquors List<small> <a href='{% url "liquors:create" %}'>Add Liquors</a></small></h1>
 
 <div class="container">    
   <table class="table table-bordered">
@@ -22,11 +22,13 @@
         <td>{{obj.can_or_bottle}} </td>
         <td>{{obj.price}} </td>
   </tr>
-
+{% empty %}
+<a href='{% url "liquors:create" %}'>Add One</a>
 {% endfor %}
 
    </tbody>
   </table>
+
 </div>
 
 {% endblock content %}

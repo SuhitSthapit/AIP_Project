@@ -82,22 +82,25 @@ class LiquorCreateView(LoginRequiredMixin , CreateView):
 #	}
 #	return render(request, template_name, context)
 
-class LiquorListView (ListView):
+class LiquorListView (LoginRequiredMixin, ListView):
 	template_name = 'liquors/liquors_list.html'	
 	def get_queryset(self):
+		return LiquorList.objects.filter(owner=self.request.user)
 		#print (self.kwargs)
-		Slug = self.kwargs.get("slug")
-		if Slug:
-			queryset = LiquorList.objects.filter(      ###display keywords from database
-				Q(category__iexact=Slug) | Q(category__icontains=Slug)   ###contain helps to search for data even when keyword matches some part of characters from database
-				)   
-		else:
-			queryset = LiquorList.objects.all() ###display all if there is no slug
-		return queryset
+		#Slug = self.kwargs.get("slug")
+		#if Slug:
+		#	queryset = LiquorList.objects.filter(      ###display keywords from database
+				#Q(category__iexact=Slug) | Q(category__icontains=Slug)   ###contain helps to search for data even when keyword matches some part of characters from database
+				#)   
+		#else:
+			#queryset = LiquorList.objects.all() ###display all if there is no slug
+		#return queryset
 
-class LiquorDetailView ( DetailView):
+class LiquorDetailView ( LoginRequiredMixin, DetailView):
 	template_name = 'liquors/liquors_detail.html'
-	queryset = LiquorList.objects.all()	
+	def get_queryset(self):
+		return LiquorList.objects.filter(owner=self.request.user)
+	#queryset = LiquorList.objects.all()	
 	
 #	def get_object(self, *args, **kwargs):                 ## this function lets you to write anything instead of pk or slug in url.py
 #		liquor_id = self.kwargs.get('liquor_id')
@@ -105,15 +108,16 @@ class LiquorDetailView ( DetailView):
 #		return obj
 
 class LiquorUpdateView (LoginRequiredMixin, UpdateView):   ##to update details
-	template_name = 'form.html'
+	template_name = 'liquors/detail-update.html'
 	form_class = LiquorListCreateForm
 	
 	def get_queryset(self):
-		return LiquorList.objects.all()	
+		return LiquorList.objects.filter(owner = self.request.user)	
 
 	def get_context_data (self, *args, **kwargs):
 		context = super(LiquorUpdateView, self).get_context_data(*args, **kwargs)
-		context ['title'] = 'Update Your Favorite Liquor:'
+		name = self.get_object().name
+		context ['title'] = f"Update Your Favorite Liquor: {name}"
 		return context
 
 

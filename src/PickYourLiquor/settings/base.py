@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'liquors',  ###adding our Liquors app
+    'profiles',
 ]
 
 MIDDLEWARE = [
