@@ -2,7 +2,7 @@
 {% block head_title %} Forms || {{block.super}} {% endblock head_title %}
 {% block content %}
 <br><hr size = "10">
-<h1> Add Your Favorite Liquor:</h1>
+<h1> {{ title }}</h1>
 <hr size = "10">
 
 {% if form.errors.non_field_errors %}

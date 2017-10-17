@@ -34,3 +34,7 @@ class LiquorListCreateForm (forms.ModelForm):
 		if name == "Hello":
 			raise forms.ValidationError("Not a valid Name!")
 		return name
+
+	def __init__(self, user=None, *args, **kwargs):
+		super(LiquorListCreateForm, self).__init__(*args, **kwargs)
+	#	self.fields['name'].queryset =  LiquorList.object.filter(owner = user)

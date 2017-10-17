@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404  ##renders HTML files
 from django.views import View  ##class based view
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView
 from .models import LiquorList   ## for querying (just like in admin.py)
 from django.db.models import Q
 
@@ -45,13 +45,21 @@ def liquor_createview(request):
 class LiquorCreateView(LoginRequiredMixin , CreateView):
 	form_class = LiquorListCreateForm
 	login_url = '/login/'
-	template_name = 'liquors/form.html'
+	template_name = 'form.html'
 	#success_url = "/liquors/"
 
 	def form_valid(self, form):
 		instance = form.save  (commit = False)
 		instance.owner = self.request.user   ##save the owner of the data added
 		return super (LiquorCreateView, self).form_valid(form)
+
+	def get_queryset(self):
+		return LiquorList.objects.filter(user=self.request.user)	
+
+	def get_context_data (self, *args, **kwargs):
+		context = super(LiquorCreateView, self).get_context_data(*args, **kwargs)
+		context ['title'] = 'Add Your Favorite Liquor:'
+		return context
 
 
 
@@ -87,7 +95,7 @@ class LiquorListView (ListView):
 			queryset = LiquorList.objects.all() ###display all if there is no slug
 		return queryset
 
-class LiquorDetailView (DetailView):
+class LiquorDetailView ( DetailView):
 	template_name = 'liquors/liquors_detail.html'
 	queryset = LiquorList.objects.all()	
 	
@@ -96,6 +104,17 @@ class LiquorDetailView (DetailView):
 #		obj = get_object_or_404(LiquorList, id = liquor_id)  ## pk = liquor_id
 #		return obj
 
+class LiquorUpdateView (LoginRequiredMixin, UpdateView):   ##to update details
+	template_name = 'form.html'
+	form_class = LiquorListCreateForm
+	
+	def get_queryset(self):
+		return LiquorList.objects.all()	
+
+	def get_context_data (self, *args, **kwargs):
+		context = super(LiquorUpdateView, self).get_context_data(*args, **kwargs)
+		context ['title'] = 'Update Your Favorite Liquor:'
+		return context
 
 
 ### class Template based view ###
