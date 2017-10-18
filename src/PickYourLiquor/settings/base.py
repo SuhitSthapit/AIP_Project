@@ -27,6 +27,21 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
+###for sending activavtion email
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'suhitmaansthapit545@gmail.com' 
+EMAIL_HOST_PASSWORD = 'Halamadrid545'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'PickYourLiquor <suhitmaansthapit545@email.com>'
+
+ADMINS = (
+    ('You', 'suhitmaansthapit545@email.com'),
+)
+MANAGERS = ADMINS
+
+
 LOGIN_URL = '/login/'  ## to log in to website
 # Application definition
 

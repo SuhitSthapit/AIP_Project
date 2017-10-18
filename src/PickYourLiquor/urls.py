@@ -26,7 +26,7 @@ from liquors.views import (
 	LiquorCreateView, liquor_createview
 )
 from profiles.views import RegisterView
-from profiles.views import ProfileFollowToggle
+from profiles.views import ProfileFollowToggle, activate_user_view
 
 urlpatterns = [
 	url(r'^$', HomeViews.as_view(), name ='home'),
@@ -38,6 +38,7 @@ urlpatterns = [
 	url(r'^login/$', LoginView.as_view(), name = 'login'),  ## logging in
 	url(r'^logout/$', LogoutView.as_view(), name = 'logout'),  ## logout 
 	url(r'^register/$', RegisterView.as_view(), name = 'register'),  ## Register user
+	url(r'^activate/(?P<code>[a-z0-9].*)/$', activate_user_view, name='activate'),
 	url(r'^profile-follow/$', ProfileFollowToggle.as_view(), name='follow'), ##follow
 	#url(r'^liquors/create/$', liquor_createview),
 	#url(r'^liquors/create/$', LiquorCreateView.as_view(), name ='liquours-create'),  ### add liquor by a form  
