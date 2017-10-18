@@ -2,8 +2,11 @@ This project (Assessment 3) for the course Advanced Internet Programming is writ
 My Student Student ID is 12673341. 
 
 *****************************************************************************************************************
+PickYourLiquor.com
 
 I have used Python's Django Framework for the web application development. 
+Django is based on Models, Templates and Views concept.
+
 The name of the website is PickYourLiqour.com
 The purpose of this website is that, users can signup, login and logout and they can create, read, update and 
 search the data. They can enter data about their favorite liquor, its price, its category and its type (if it 
@@ -12,7 +15,10 @@ The users can also follow or unfollow other users. They can view the data of the
 home page. 
 
 *****************************************************************************************************************
+BASIC OVERVIEW OF DJANGO FRAMEWORK
+
 There are all the required files attached in this ZIP file for the program to run. 
+The 'requirements.txt' file contains list of all the files necessary for the app to run.
 
 The project folder name is PickYourLiqour.
 
@@ -47,9 +53,33 @@ in return and displays that information in the website.
 
  
 *****************************************************************************************************************
+HOW TO GET STARTED:
 
 
+In order to start the server, following commands must be executed:
 
+	cd AIPProject\Scripts
+	activate
+	cd ..
+	cd src
+	python manage.py runserver
+
+The last command is to run our Django server. 
+
+*****************************************************************************************************************
+API SERVICE
+
+The API service provided in this web application has get, post, delete and update methods.
+
+The users can go to following link to post data: 
+http://127.0.0.1:8000/liquor
+
+Similarly, the users can go send get request to get data of particular liquor if its 'id' is provided.
+For instance,
+http://127.0.0.1:8000/liquor/2 
+The above request allows the user to get data about liquor "Becks" in JSON format.
+
+*****************************************************************************************************************
 
 
 
