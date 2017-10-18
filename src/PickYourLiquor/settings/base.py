@@ -53,9 +53,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'liquors',  ###adding our Liquors app
-    'profiles'
+    'profiles',
+    'rest_framework', # REST framework for exposing RESTful API
    
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  ### During development only
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

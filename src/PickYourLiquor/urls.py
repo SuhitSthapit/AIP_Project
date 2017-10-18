@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, password_reset, password_reset_done,  password_reset_complete, password_reset_confirm
 
 from liquors.views import (
 	HomeViews, ##for wheen user is loggen in
@@ -40,6 +40,12 @@ urlpatterns = [
 	url(r'^register/$', RegisterView.as_view(), name = 'register'),  ## Register user
 	url(r'^activate/(?P<code>[a-z0-9].*)/$', activate_user_view, name='activate'),
 	url(r'^profile-follow/$', ProfileFollowToggle.as_view(), name='follow'), ##follow
+	url(r'^password_reset/$', password_reset, name='reset'), ##password reset
+    url(r'^password_reset/done/$', password_reset_done, name='password_reset_done'),
+    url(r'^reset/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+    password_reset_confirm, name='password_reset_confirm'),
+    url(r'^reset/done/$', password_reset_complete, name='password_reset_complete'),
+
 	#url(r'^liquors/create/$', liquor_createview),
 	#url(r'^liquors/create/$', LiquorCreateView.as_view(), name ='liquours-create'),  ### add liquor by a form  
 	#url(r'^liquors/(?P<slug>\w+)/$', LiquorListView.as_view()), #listView  ##slug is used to search for types of alcohols as well
