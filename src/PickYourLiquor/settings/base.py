@@ -53,8 +53,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'liquors',  ###adding our Liquors app
-    'profiles',
+    'profiles', ### a profile for each user
     'rest_framework', # REST framework for exposing RESTful API
+    'api', ###app for exposing api
    
 ]
 

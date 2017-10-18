@@ -34,6 +34,7 @@ urlpatterns = [
 	#url(r'^liquors/$', liquor_Listview), #function
 	url(r'^liquors/', include('liquors.urls', namespace = 'liquors')),  ###include the urls.py file of app Liquors
 	url(r'^u/', include('profiles.urls', namespace = 'profile')), ## u = users
+	url(r'^', include('api.urls')), # include urls of api app
 	#url(r'^liquors/$', LiquorListView.as_view(), name ='liquors'), 
 	url(r'^login/$', LoginView.as_view(), name = 'login'),  ## logging in
 	url(r'^logout/$', LogoutView.as_view(), name = 'logout'),  ## logout 
