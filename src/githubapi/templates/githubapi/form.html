@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br><hr size = "10">
+<h3>Enter your username in GITHUB: </h3>
+<p> You will be provided with data about your GITHUB account details!</p>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Save"/>
+    </form>
+
+
+{% endblock %}

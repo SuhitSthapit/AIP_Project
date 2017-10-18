@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'profiles', ### a profile for each user
     'rest_framework', # REST framework for exposing RESTful API
     'api', ###app for exposing api
+    'githubapi' , ###integrating to public web service of GITHUB
    
 ]
 

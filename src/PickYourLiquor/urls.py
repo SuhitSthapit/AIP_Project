@@ -26,6 +26,7 @@ from liquors.views import (
 	LiquorCreateView, liquor_createview
 )
 from profiles.views import RegisterView
+from githubapi.views import save_githubUser
 from profiles.views import ProfileFollowToggle, activate_user_view
 
 urlpatterns = [
@@ -52,4 +53,5 @@ urlpatterns = [
 	#url(r'^liquors/(?P<slug>\w+)/$', LiquorListView.as_view()), #listView  ##slug is used to search for types of alcohols as well
     #url(r'^liquors/(?P<slug>[\w-]+)/$', LiquorDetailView.as_view(), name ='liquor-detail'),   ### pk = primary key
     url(r'^admin/', admin.site.urls),
+    url(r'^web-service/', save_githubUser, name = 'webservice'),
 ]

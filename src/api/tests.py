@@ -25,7 +25,7 @@ class ViewTestCase(TestCase):
     def setUp(self):
         """Define the test client and other test variables."""
         self.client = APIClient()
-        self.liquor_data = {'name': 'Absolut'}
+        self.liquor_data = {'name': 'Gorkha'}
         self.response = self.client.post(
             reverse('create'),
             self.liquor_data,
@@ -52,6 +52,7 @@ class ViewTestCase(TestCase):
             reverse('details', kwargs={'pk': liquor.id}),
             change_liquor, format='json'
         )
+        #print (liquor.id)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
     def test_api_can_delete_liquor(self):
