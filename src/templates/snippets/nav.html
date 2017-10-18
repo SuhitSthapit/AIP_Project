@@ -6,7 +6,9 @@
 <a href='{% url "home" %}'>Home</a>
 <a href='{% url "about" %}'>About</a>
 <a href='{% url "liquors:list" %}'>Liquors</a>
+<a href='{% url "profile:detail" username=request.user.username %}'>Search</a>
 <a href='{% url "logout" %}'>Lougout</a>
+
 
 {% else %}
 <a href='{% url "home" %}'>Home</a>

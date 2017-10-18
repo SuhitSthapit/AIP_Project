@@ -30,14 +30,14 @@ ALLOWED_HOSTS = []
 
 ###for sending activavtion email
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'suhitmaansthapit545@gmail.com' 
-EMAIL_HOST_PASSWORD = 'Halamadrid545'
+EMAIL_HOST_USER = 'pickyourliquor@gmail.com' 
+EMAIL_HOST_PASSWORD = 'Madrid545'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'PickYourLiquor <suhitmaansthapit545@email.com>'
+DEFAULT_FROM_EMAIL = 'PickYourLiquor <pickyourliquor@email.com>'
 
 ADMINS = (
-    ('You', 'suhitmaansthapit545@email.com'),
+    ('You', 'pickyourliquor@email.com'),
 )
 MANAGERS = ADMINS
 
@@ -60,7 +60,7 @@ INSTALLED_APPS = [
    
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  ### During development only
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  ### During development only
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
